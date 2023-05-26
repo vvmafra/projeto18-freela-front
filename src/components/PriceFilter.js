@@ -24,12 +24,12 @@ const PriceFilter = ({ onFilterChange }) => {
   return (
     <PriceFilterContainer>
       <SliderContainer>
-        <p>Min. Price: {minimumPrice}</p>
-        <StyledSlider min={0} max={maximumPrice} value={minimumPrice} onChange={handleMinPriceChange} />
+        <p>Min. Price: {minPrice}</p>
+        <StyledSlider min={0} max={maximumPrice} value={minPrice} onChange={handleMinPriceChange} />
       </SliderContainer>
       <SliderContainer>
-        <p>Max. Price: {maximumPrice}</p>
-        <StyledSlider min={0} max={maximumPrice} value={maximumPrice} onChange={handleMaxPriceChange} />
+        <p>Max. Price: {maxPrice}</p>
+        <StyledSlider min={0} max={maximumPrice} value={maxPrice} onChange={handleMaxPriceChange} />
       </SliderContainer>
       <ApplyButton onClick={handleFilterSubmit}>Apply Filter</ApplyButton>
     </PriceFilterContainer>

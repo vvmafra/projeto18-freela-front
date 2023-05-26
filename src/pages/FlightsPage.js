@@ -13,7 +13,7 @@ export default function FlightsPage(){
   const [items, setItems] = useState([]);
   const [filteredFlights, setFilteredFlights] = useState([]);
   const {selectedCity} = useContext(CityContext)
-  const {selectedFlight, saveFlight, setMinimumPrice, setMaximumPrice} = useContext(FlightsContext)
+  const {saveFlight, setMinimumPrice, setMaximumPrice} = useContext(FlightsContext)
 
 
   useEffect(() => {
@@ -28,6 +28,9 @@ export default function FlightsPage(){
         const minimumPrice = response.data.minPrice
         setMinimumPrice(minimumPrice)
         
+
+        console.log(minimumPrice)
+        console.log(maximumPrice)
       })
       .catch((error) => {
         console.error(error);
@@ -43,8 +46,10 @@ export default function FlightsPage(){
 
   };
 
+
   function selectFlight(flight){
     saveFlight(flight)
+    console.log(flight)
     navigate(`/flight/${flight.id}`)
 }
 

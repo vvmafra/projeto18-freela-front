@@ -5,6 +5,7 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { CityContext } from '../contexts/CityContext'
 import MenuTop from '../components/MenuTop'
+import MenuBottom from '../components/MenuBottom'
 
 export default function HomePage(){
     const [options, setOptions] = useState([])
@@ -15,7 +16,6 @@ export default function HomePage(){
     useEffect(()=> {
         const promise = axios.get("https://travelagency-api-86py.onrender.com/cities")
         promise.then(res => {
-            console.log(res.data)
             setOptions(res.data)
         })
         promise.catch(err => {
@@ -29,16 +29,13 @@ export default function HomePage(){
 
     function selectCity(cities){
         saveCity(cities)
-        console.log(selectedCity)
         navigate(`/flights/${cities.id}`)
     }
 
     return (
         
             <BackgroundImage>
-                <MenuTop>
-                    Travel Agency
-                </MenuTop>
+                <MenuTop/>
                 <Container>
                     <Box onClick={handleClick}>
                         Cities Avaiable{'\u00A0\u00A0\u00A0'}|{'\u00A0\u00A0\u00A0'}Country
@@ -51,6 +48,7 @@ export default function HomePage(){
                             </OptionList>
                         )}
                 </Container>
+                <MenuBottom/>
             </BackgroundImage>
        
     )
