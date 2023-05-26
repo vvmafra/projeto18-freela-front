@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { CityContext } from '../contexts/CityContext'
+import MenuTop from '../components/MenuTop'
 
 export default function HomePage(){
     const [options, setOptions] = useState([])
@@ -62,21 +63,6 @@ const BackgroundImage = styled.div`
     width: 100vw;
     height: 100vh;
     padding-top: 30px;
-`
-
-const MenuTop = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    width: 50vw;
-    height: 10vh;
-    background-color: transparent;
-    border: 7px solid #48403f;
-    margin: auto;
-    font-family: 'PT Sans', sans-serif;
-    font-size: 28px;
-    color: #48403f;
 `
 const Container = styled.div`
   display: flex;
