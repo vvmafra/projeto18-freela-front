@@ -4,29 +4,8 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
-export default function HomePage(){
-    const [options, setOptions] = useState([])
-    const [showOptions, setShowOptions] = useState(false)
+export default function FlightsPage(){
     const navigate = useNavigate()
-
-    useEffect(()=> {
-        const promise = axios.get("https://travelagency-api-86py.onrender.com/cities")
-        promise.then(res => {
-            console.log(res.data)
-            setOptions(res.data)
-        })
-        promise.catch(err => {
-            console.error(err)
-        })
-    }, [])
-
-    function handleClick(){
-        setShowOptions(!showOptions)
-    }
-
-    function selectCity(cities){
-        navigate(`/flights/${cities.id}`)
-    }
 
 
 
@@ -36,16 +15,9 @@ export default function HomePage(){
                 Travel Agency
             </MenuTop>
             <Container>
-                <Box onClick={handleClick}>
+                <Box>
                     Cities Avaiable | Country
                 </Box>
-                {showOptions && (
-                    <OptionList>
-                    {options.map(cities => (
-                        <OptionItem key={cities.id}  onClick={() => selectCity(cities)}>{cities.name}   |   {cities.country} </OptionItem>
-                    ))}
-        </OptionList>
-      )}
     </Container>
 
         </BackgroundImage>

@@ -1,12 +1,14 @@
 import styled from 'styled-components'
 import image from '../photos/trip_photo.jpg'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import { CityContext } from '../contexts/CityContext'
 
 export default function HomePage(){
     const [options, setOptions] = useState([])
     const [showOptions, setShowOptions] = useState(false)
+    const {saveCity, selectedCity} = useContext(CityContext)
     const navigate = useNavigate()
 
     useEffect(()=> {
@@ -25,28 +27,31 @@ export default function HomePage(){
     }
 
     function selectCity(cities){
+        saveCity(cities)
+        console.log(selectedCity)
         navigate(`/flights/${cities.id}`)
     }
 
     return (
-        <BackgroundImage>
-            <MenuTop>
-                Travel Agency
-            </MenuTop>
-            <Container>
-                <Box onClick={handleClick}>
-                    Cities Avaiable{'\u00A0\u00A0\u00A0'}|{'\u00A0\u00A0\u00A0'}Country
-                </Box>
-                {showOptions && (
-                    <OptionList>
-                    {options.map(cities => (
-                        <OptionItem key={cities.id}  onClick={() => selectCity(cities)}>{cities.name}{'\u00A0\u00A0\u00A0'}|{'\u00A0\u00A0\u00A0'}{cities.country} </OptionItem>
-                    ))}
-        </OptionList>
-      )}
-    </Container>
-
-        </BackgroundImage>
+        
+            <BackgroundImage>
+                <MenuTop>
+                    Travel Agency
+                </MenuTop>
+                <Container>
+                    <Box onClick={handleClick}>
+                        Cities Avaiable{'\u00A0\u00A0\u00A0'}|{'\u00A0\u00A0\u00A0'}Country
+                    </Box>
+                    {showOptions && (
+                        <OptionList>
+                        {options.map(cities => (
+                            <OptionItem key={cities.id}  onClick={() => selectCity(cities)}>{cities.name}{'\u00A0\u00A0\u00A0'}|{'\u00A0\u00A0\u00A0'}{cities.country} </OptionItem>
+                        ))}
+                            </OptionList>
+                        )}
+                </Container>
+            </BackgroundImage>
+       
     )
 }
 
