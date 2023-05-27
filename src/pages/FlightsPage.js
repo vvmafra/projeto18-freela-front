@@ -3,10 +3,11 @@ import flightPhoto from '../photos/flight_photo.jpg'
 import { useContext, useEffect, useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
-import PriceFilter from '../components/PriceFilter'
+import PriceFilterFlights from '../components/PriceFilterFlights'
 import MenuTop from '../components/MenuTop'
 import { CityContext } from '../contexts/CityContext'
 import { FlightsContext } from '../contexts/FlightsContext'
+import { AiOutlineHome, AiOutlineLeftSquare } from 'react-icons/ai'
 
 export default function FlightsPage(){
   const navigate = useNavigate()
@@ -27,10 +28,6 @@ export default function FlightsPage(){
 
         const minimumPrice = response.data.minPrice
         setMinimumPrice(minimumPrice)
-        
-
-        console.log(minimumPrice)
-        console.log(maximumPrice)
       })
       .catch((error) => {
         console.error(error);
@@ -49,16 +46,22 @@ export default function FlightsPage(){
 
   function selectFlight(flight){
     saveFlight(flight)
-    console.log(flight)
     navigate(`/flight/${flight.id}`)
 }
 
+  function returnPage() {
+  navigate("/")
+}
+
+  function home(){
+  navigate("/")
+}
 
   return (
     <BackgroundImage>
       <MenuTop/>
       <MenuContainer>
-        <PriceFilter onFilterChange={handleFilterChange} />
+        <PriceFilterFlights onFilterChange={handleFilterChange} />
         <FlighsContainer>
           <p> Arrival City : {selectedCity.name}{'\u00A0\u00A0\u00A0'}|{'\u00A0\u00A0\u00A0'}Country : {selectedCity.country} </p>
           <FlightsOptions filteredFlights={filteredFlights}> 
@@ -77,6 +80,18 @@ export default function FlightsPage(){
           </FlightsOptions>
         </FlighsContainer>
       </MenuContainer>
+        <MenuBottomContainer>
+                 <AiOutlineLeftSquare onClick={returnPage}
+                    size={60}
+                    style={{
+                        color: "#000000",
+                        cursor: "pointer"}}  />
+                <AiOutlineHome onClick={home}
+                    size={60}
+                    style={{
+                        color: "#000000",
+                        cursor: "pointer"}} />            
+        </MenuBottomContainer>
     </BackgroundImage>
   );
 }
@@ -96,8 +111,7 @@ const MenuContainer = styled.div`
   margin: 0;
   width: 100vw;
   height: 80vh;
-  background-color: #48403f;
-  border: 1px solid gray;
+  border: none;
   text-align: center;
   display: flex;
   align-items: center;
@@ -107,8 +121,6 @@ const MenuContainer = styled.div`
 const FlighsContainer = styled.div`
   width: 70vw;
   height: 75vh;
-  background-color: purple;
-
   p {
     font-family: 'PT Sans', sans-serif;
     font-size: 24px;
@@ -119,7 +131,6 @@ const FlighsContainer = styled.div`
 const FlightsOptions = styled.div`
   width: 70vw;
   height: 65vh;
-  background-color: red;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
@@ -129,14 +140,13 @@ const FlightsOptions = styled.div`
     font-family: 'PT Sans', sans-serif;
     font-size: 24px;
     color: black;
-    background-color: yellow;
   }
 `;
 
 const FlightTag = styled.div`
   width: 350px;
   height: 180px;
-  background-color: green;
+  background-color: #48403f;
   margin-bottom: 20px;
   display: flex;
   flex-direction: column;
@@ -146,11 +156,22 @@ const FlightTag = styled.div`
   border-radius: 20px;
   cursor: pointer;
   &:hover {
-    background-color: #48403f;
+    background-color: white;
     color: white;
   }
   p {
     font-size: 18px;
     margin: 0;
   }
+`
+
+const MenuBottomContainer = styled.div`
+    position: absolute;
+    bottom: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+    min-height: 20px;
+    display: flex;
+    justify-content: space-between;
+    width: 80vw;
 `

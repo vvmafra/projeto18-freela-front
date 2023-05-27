@@ -20,14 +20,13 @@ export default function FlightPage(){
         axios.get(`https://travelagency-api-86py.onrender.com/flight/${id}`)
           .then((response) => {
             setFlightDetails(response.data)
-            console.log(response.data)
           })
           .catch((error) => {
             console.error(error)
           })
       }, [])
 
-      function returnPage() {
+      function returnPage(){
         navigate(`/flights/${selectedCity.id}`)
       }
 
@@ -35,22 +34,17 @@ export default function FlightPage(){
         navigate("/")
       }
 
+      function accommodations(){
+        navigate(`/accommodations/${selectedCity.id}`)
+      }
+
     return(
         <BackgroundImage>
-            <TopMenu>
-                <AiOutlineLeftSquare onClick={returnPage}
-                    size={60}
-                    style={{
-                        color: "#000000"}}  />
-                <MenuTop/>
-                <AiOutlineHome onClick={home}
-                    size={60}
-                    style={{
-                        color: "#000000"}} />
-            </TopMenu>
+            <MenuTop/>
+                
             <PageContainer>
                 <FlightContainer>
-                    <h1>Flight number: 4402{flightDetails.id}</h1>
+                    <h1>Flight number: 442{flightDetails.id}</h1>
                     <p>Arrival City: {flightDetails.arrivalCity}</p>
                     <p>Departure City: {flightDetails.departureCity}</p>
                     <p>Airline Company: {flightDetails.airline}</p>
@@ -61,6 +55,17 @@ export default function FlightPage(){
                     <p>Price: € {flightDetails.price}</p>
                 </FlightContainer>
             </PageContainer>
+            <MenuBottomContainer>
+                 <AiOutlineLeftSquare onClick={returnPage}
+                    size={60}
+                    style={{
+                        color: "#000000"}}  />
+                <ContainerChoose onClick={accommodations}>Choose an Accommodation</ContainerChoose>
+                <AiOutlineHome onClick={home}
+                    size={60}
+                    style={{
+                        color: "#000000"}} />            
+            </MenuBottomContainer>
         </BackgroundImage>
     )
 }
@@ -74,16 +79,6 @@ const BackgroundImage = styled.div`
     padding-top: 30px;
 `
 
-const TopMenu = styled.div`
-    background-color: red;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
-    box-sizing: border-box;
-    padding: 20px;
-`
-
 const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -92,7 +87,7 @@ const PageContainer = styled.div`
 
 const FlightContainer = styled.div`
     background-color: #f8a600;
-    width: 370px;
+    width: 400px;
     height: 470px;
     margin-top: 50px;
     font-family: 'PT Sans', sans-serif;
@@ -105,5 +100,30 @@ const FlightContainer = styled.div`
     border: 4px solid black;
     p {
         font-size: 20px;
+    }
+`
+
+const MenuBottomContainer = styled.div`
+    position: absolute;
+    bottom: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+    min-height: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80vw;
+`
+
+const ContainerChoose = styled.button`
+    padding: 10px;
+    background-color: #48403f;
+    color: white;
+    font-family: 'PT Sans', sans-serif;
+    font-size: 20px;
+    border: 7px groove white;
+    cursor: pointer;
+    &:hover {
+        background-color: #f8a600;
     }
 `

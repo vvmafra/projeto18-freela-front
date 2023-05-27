@@ -5,7 +5,6 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { CityContext } from '../contexts/CityContext'
 import MenuTop from '../components/MenuTop'
-import MenuBottom from '../components/MenuBottom'
 
 export default function HomePage(){
     const [options, setOptions] = useState([])
@@ -48,7 +47,9 @@ export default function HomePage(){
                             </OptionList>
                         )}
                 </Container>
-                <MenuBottom/>
+                <MenuBottomContainer>
+                    ©2023 VVM - Travel Agency By Victor Mafra. All Rights Reserved. Designed By Victor Mafra
+                </MenuBottomContainer>
             </BackgroundImage>
        
     )
@@ -101,3 +102,15 @@ const OptionItem = styled.li`
     color: white;
   }
 `;
+
+const MenuBottomContainer = styled.div`
+    position: absolute;
+    background-color: white;
+    bottom: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+    min-height: 20px;
+    font-family: 'PT Sans', sans-serif;
+    font-size: 14px;
+    color: black;
+`
