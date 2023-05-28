@@ -20,14 +20,17 @@ export default function FlightsPage(){
   useEffect(() => {
     axios.get(`https://travelagency-api-86py.onrender.com/flights/${selectedCity.id}`)
       .then((response) => {
+        const maxPrice = response.data.maxPrice
+
+        const minPrice = response.data.minPrice
+
+        setMaximumPrice(maxPrice)
+        setMinimumPrice(minPrice)
+
         setItems(response.data.flights);
         setFilteredFlights(response.data.flights);
 
-        const maximumPrice = response.data.maxPrice
-        setMaximumPrice(maximumPrice)
-
-        const minimumPrice = response.data.minPrice
-        setMinimumPrice(minimumPrice)
+        
       })
       .catch((error) => {
         console.error(error);
@@ -40,7 +43,7 @@ export default function FlightsPage(){
       return price >= minPrice && price <= maxPrice;
     });
     setFilteredFlights(filtered);
-
+    
   };
 
 
@@ -50,6 +53,8 @@ export default function FlightsPage(){
 }
 
   function returnPage() {
+    setMaximumPrice(0)
+    setMinimumPrice(0)
   navigate("/")
 }
 

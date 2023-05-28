@@ -20,8 +20,6 @@ const PriceFilterAccommodations = ({ onFilterChange }) => {
 
   const handleFilterSubmit = () => {
     onFilterChange(minPrice, maxPrice);
-    console.log(minPrice)
-    console.log(maximumPrice)
   };
 
   return (

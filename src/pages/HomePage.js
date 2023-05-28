@@ -37,7 +37,7 @@ export default function HomePage(){
                 <MenuTop/>
                 <Container>
                     <Box onClick={handleClick}>
-                        Cities Avaiable{'\u00A0\u00A0\u00A0'}|{'\u00A0\u00A0\u00A0'}Country
+                        Cities Available{'\u00A0\u00A0\u00A0'}|{'\u00A0\u00A0\u00A0'}Country
                     </Box>
                     {showOptions && (
                         <OptionList>

@@ -11,7 +11,7 @@ import { CityContext } from '../contexts/CityContext'
 
 export default function FlightPage(){
     const navigate = useNavigate()
-    const {selectedFlight} = useContext(FlightsContext)
+    const {selectedFlight, setMaximumPrice, setMinimumPrice} = useContext(FlightsContext)
     const {selectedCity} = useContext(CityContext)
     const [flightDetails, setFlightDetails] = useState({})
     const id = selectedFlight.id
@@ -27,6 +27,8 @@ export default function FlightPage(){
       }, [])
 
       function returnPage(){
+        setMaximumPrice(0)
+        setMinimumPrice(0)
         navigate(`/flights/${selectedCity.id}`)
       }
 
