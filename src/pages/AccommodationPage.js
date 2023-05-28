@@ -19,7 +19,8 @@ export default function AccommodationPage(){
     useEffect(() => {
         axios.get(`https://travelagency-api-86py.onrender.com/accommodation/${id}`)
           .then((response) => {
-            setAccDetails(response.data)
+            const details = response.data
+            setAccDetails(details)
             console.log(response.data)
           })
           .catch((error) => {

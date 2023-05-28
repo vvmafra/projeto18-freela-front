@@ -16,7 +16,7 @@ export default function AccommodationsPage() {
     const [filteredAcc, setFilteredAcc] = useState([])
     const {selectedFlight} = useContext(FlightsContext)
     const {selectedCity} = useContext(CityContext)
-    const {saveAcc, setMinimumPrice, setMaximumPrice} = useContext(AccommodationsContext)
+    const {saveAcc, setMinimumPrice, setMaximumPrice, setAccDetails, accDetails } = useContext(AccommodationsContext)
 
     useEffect(() => {
         axios.get(`https://travelagency-api-86py.onrender.com/accommodations/${selectedCity.id}`)
@@ -45,8 +45,20 @@ export default function AccommodationsPage() {
       };
 
     function selectAcc(acc){
-        saveAcc(acc)
-        navigate(`/accommodation/${acc.id}`)
+          saveAcc(acc)
+
+          axios.get(`https://travelagency-api-86py.onrender.com/accommodation/${acc.id}`)
+          .then((response) => {
+            const details = response.data
+            setAccDetails(details)
+            console.log(details)
+            navigate(`/accommodation/${acc.id}`)
+          })
+          .catch((error) => {
+            console.error(error)
+          })
+          console.log(accDetails)
+        
     }
 
     function returnPage(){
