@@ -6,6 +6,8 @@ export default function PhotosAcc (){
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const { accDetails } = useContext(AccommodationsContext)
     const photos = accDetails.photos
+
+
   
     const handlePrevClick = () => {
       if (currentImageIndex > 0) {
@@ -23,7 +25,10 @@ export default function PhotosAcc (){
   
     return (
       <ImageCarouselContainer>
-        <p>{accDetails.name}</p>
+        <h1>{accDetails.name}</h1>
+        {photos.length === 0 ? 
+        <p>No photos from this Accommodations is avaiable</p>
+      : (
         <ImagesButtons>
           <CarouselButton onClick={handlePrevClick}>&lt;</CarouselButton>
           <ImageContainer>
@@ -31,6 +36,7 @@ export default function PhotosAcc (){
           </ImageContainer>
           <CarouselButton onClick={handleNextClick}>&gt;</CarouselButton>
         </ImagesButtons>
+        )}
       </ImageCarouselContainer>
     );
   };
@@ -45,9 +51,15 @@ export default function PhotosAcc (){
   margin-top: 30px;
   p {
     font-family: 'PT Sans', sans-serif;
+    font-size: 18px;
+    color: black;
+  }
+  h1 {
+    font-family: 'PT Sans', sans-serif;
     font-style: italic;
     font-size: 24px;
     color: black;
+    font-weight: bold;
   }
 `;
 

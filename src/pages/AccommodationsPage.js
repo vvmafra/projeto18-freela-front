@@ -51,13 +51,11 @@ export default function AccommodationsPage() {
           .then((response) => {
             const details = response.data
             setAccDetails(details)
-            console.log(details)
             navigate(`/accommodation/${acc.id}`)
           })
           .catch((error) => {
             console.error(error)
           })
-          console.log(accDetails)
         
     }
 
