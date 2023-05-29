@@ -1,15 +1,7 @@
 # Travel Agency Project
 
-[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-18.Project - WebSite developed to show flights and accommodations from a created Travel Agency - VVM
 
-## Table of Contents
-
-- [Installation](#installation)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
-- [Contact](#contact)
+✈️18.Project - WebSite developed to show flights and accommodations from a created Travel Agency - VVM
 
 ## Available Scripts
 
