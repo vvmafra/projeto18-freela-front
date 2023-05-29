@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import flightPhoto from '../photos/flight_photo.jpg'
 import { useContext, useEffect, useState } from 'react'
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import PriceFilterFlights from '../components/PriceFilterFlights'
 import MenuTop from '../components/MenuTop'
 import { CityContext } from '../contexts/CityContext'
@@ -15,6 +15,7 @@ export default function FlightsPage(){
   const [filteredFlights, setFilteredFlights] = useState([]);
   const {selectedCity} = useContext(CityContext)
   const {saveFlight, setMinimumPrice, setMaximumPrice} = useContext(FlightsContext)
+  const location = useLocation()
 
 
   useEffect(() => {
@@ -29,13 +30,11 @@ export default function FlightsPage(){
 
         setItems(response.data.flights);
         setFilteredFlights(response.data.flights);
-
-        
       })
       .catch((error) => {
         console.error(error);
       });
-  }, []);
+  }, [location]);
 
   const handleFilterChange = (minPrice, maxPrice) => {
     const filtered = items.filter((flight) => {
@@ -53,8 +52,6 @@ export default function FlightsPage(){
 }
 
   function returnPage() {
-    setMaximumPrice(0)
-    setMinimumPrice(0)
   navigate("/")
 }
 

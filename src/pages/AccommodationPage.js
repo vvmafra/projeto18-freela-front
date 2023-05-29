@@ -21,7 +21,6 @@ export default function AccommodationPage(){
           .then((response) => {
             const details = response.data
             setAccDetails(details)
-            console.log(response.data)
           })
           .catch((error) => {
             console.error(error)

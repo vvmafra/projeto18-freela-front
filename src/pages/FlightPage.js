@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import MenuTop from '../components/MenuTop'
 import airplane from '../photos/airplane.jpg'
 import { useContext, useEffect, useState } from 'react'
@@ -11,7 +11,7 @@ import { CityContext } from '../contexts/CityContext'
 
 export default function FlightPage(){
     const navigate = useNavigate()
-    const {selectedFlight, setMaximumPrice, setMinimumPrice} = useContext(FlightsContext)
+    const {selectedFlight, setMaximumPrice, setMinimumPrice, maximumPrice} = useContext(FlightsContext)
     const {selectedCity} = useContext(CityContext)
     const [flightDetails, setFlightDetails] = useState({})
     const id = selectedFlight.id
@@ -27,8 +27,6 @@ export default function FlightPage(){
       }, [])
 
       function returnPage(){
-        setMaximumPrice(0)
-        setMinimumPrice(0)
         navigate(`/flights/${selectedCity.id}`)
       }
 

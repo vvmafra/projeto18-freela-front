@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import hotel from "../photos/hotel-bell.jpg"
 import MenuTop from "../components/MenuTop";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { AiOutlineHome, AiOutlineLeftSquare } from "react-icons/ai";
 import { FlightsContext } from "../contexts/FlightsContext";
@@ -16,24 +16,25 @@ export default function AccommodationsPage() {
     const [filteredAcc, setFilteredAcc] = useState([])
     const {selectedFlight} = useContext(FlightsContext)
     const {selectedCity} = useContext(CityContext)
-    const {saveAcc, setMinimumPrice, setMaximumPrice, setAccDetails, accDetails } = useContext(AccommodationsContext)
+    const {saveAcc, setMinimumPrice, setMaximumPrice, setAccDetails} = useContext(AccommodationsContext)
+    const location = useLocation()
 
     useEffect(() => {
         axios.get(`https://travelagency-api-86py.onrender.com/accommodations/${selectedCity.id}`)
           .then((response) => {
-            setAccommodations(response.data.accommodations);
-            setFilteredAcc(response.data.accommodations);
-
             const maximumPrice = response.data.maxPrice
             setMaximumPrice(maximumPrice)
 
             const minimumPrice = response.data.minPrice
             setMinimumPrice(minimumPrice)
+            
+            setAccommodations(response.data.accommodations);
+            setFilteredAcc(response.data.accommodations);
           })
           .catch((error) => {
             console.error(error);
           });
-      }, []);
+      }, [location]);
 
     const handleFilterChange = (minPrice, maxPrice) => {
         const filteredAcc = accommodations.filter((acc) => {
