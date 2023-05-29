@@ -1,6 +1,12 @@
-# Getting Started with Create React App
+# Travel Agency Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+18.Project ✈️- WebSite developed to show flights and accommodations from a created Travel Agency - VVM
+
+## Technologies used
+![JAVASCRIPT](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)&nbsp;
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)&nbsp;
+- Back-end: https://github.com/vvmafra/projeto18-freela-back
 
 ## Available Scripts
 
