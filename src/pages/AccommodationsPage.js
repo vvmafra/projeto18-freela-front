@@ -146,7 +146,7 @@ const AccContainer = styled.div`
 const AccTag = styled.div`
   width: 300px;
   height: 150px;
-  background-color: rgba(72,64,63, 0.8);
+  background-color: rgba(72,64,63, 0.90);
   margin-bottom: 20px;
   display: flex;
   flex-direction: column;

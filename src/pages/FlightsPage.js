@@ -157,7 +157,7 @@ const FlightsOptions = styled.div`
 const FlightTag = styled.div`
   width: 350px;
   height: 180px;
-  background-color: rgba(72,64,63, 0.8);
+  background-color: rgba(72,64,63, 0.90);
   margin-bottom: 20px;
   display: flex;
   flex-direction: column;
