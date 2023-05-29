@@ -43,7 +43,7 @@ export default function PhotosAcc (){
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 300px;
+  height: 330px;
   background-color: rgba(211, 211, 211, 0.7);
   box-sizing: border-box;
   margin-top: 30px;
@@ -80,9 +80,8 @@ const ImageContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 400px;
+  height: 250px;
   margin: 0 auto;
-  
 `;
 
 const Image = styled.img`
