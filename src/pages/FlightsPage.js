@@ -15,6 +15,7 @@ export default function FlightsPage(){
   const [filteredFlights, setFilteredFlights] = useState([]);
   const {selectedCity} = useContext(CityContext)
   const {saveFlight, setMinimumPrice, setMaximumPrice} = useContext(FlightsContext)
+  const [loading, setLoading] = useState(true)
   const location = useLocation()
 
 
@@ -30,9 +31,11 @@ export default function FlightsPage(){
 
         setItems(response.data.flights);
         setFilteredFlights(response.data.flights);
+        setLoading(false)
       })
       .catch((error) => {
         console.error(error);
+        setLoading(false)
       });
   }, [location]);
 
@@ -65,7 +68,12 @@ export default function FlightsPage(){
       <MenuContainer>
         <PriceFilterFlights onFilterChange={handleFilterChange} />
         <FlighsContainer>
-          <p> Arrival City : {selectedCity.name}{'\u00A0\u00A0\u00A0'}|{'\u00A0\u00A0\u00A0'}Country : {selectedCity.country} </p>
+        <p> Arrival City : {selectedCity.name}{'\u00A0\u00A0\u00A0'}|{'\u00A0\u00A0\u00A0'}Country : {selectedCity.country} </p>
+        {loading ? (
+            <LoadingContainer>
+              <LoadingSpinner />
+            </LoadingContainer>
+      ) : ( <>
           <FlightsOptions filteredFlights={filteredFlights}> 
             {filteredFlights.length === 0 ? (
               <li>No flights avaiable for this destination in this range</li>
@@ -79,7 +87,8 @@ export default function FlightsPage(){
               <p>Departure City: {flight.departureCity}</p>
             </FlightTag>
           )))}
-          </FlightsOptions>
+          </FlightsOptions> 
+          </>)}
         </FlighsContainer>
       </MenuContainer>
         <MenuBottomContainer>
@@ -148,7 +157,7 @@ const FlightsOptions = styled.div`
 const FlightTag = styled.div`
   width: 350px;
   height: 180px;
-  background-color: #48403f;
+  background-color: rgba(72,64,63, 0.8);
   margin-bottom: 20px;
   display: flex;
   flex-direction: column;
@@ -176,4 +185,30 @@ const MenuBottomContainer = styled.div`
     display: flex;
     justify-content: space-between;
     width: 80vw;
+`
+
+const LoadingContainer = styled.div`
+   display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 40vh;
+`
+
+const LoadingSpinner = styled.div`
+  border: 5px solid black;
+  border-top: 5px solid white;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 0.5s linear infinite;
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
 `

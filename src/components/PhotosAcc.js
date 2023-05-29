@@ -25,7 +25,7 @@ export default function PhotosAcc (){
       <ImageCarouselContainer>
         <h1>{accDetails.name}</h1>
         {photos.length === 0 ? 
-        <p>No photos from this Accommodations is avaiable</p>
+        <p>No photos from this Accommodations is available</p>
       : (
         <ImagesButtons>
           <CarouselButton onClick={handlePrevClick}>&lt;</CarouselButton>

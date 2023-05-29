@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import axios from 'axios'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import MenuTop from '../components/MenuTop'
 import airplane from '../photos/airplane.jpg'
 import { useContext, useEffect, useState } from 'react'
@@ -8,21 +8,23 @@ import { FlightsContext } from '../contexts/FlightsContext'
 import { AiOutlineHome, AiOutlineLeftSquare } from 'react-icons/ai'
 import { CityContext } from '../contexts/CityContext'
 
-
 export default function FlightPage(){
     const navigate = useNavigate()
-    const {selectedFlight, setMaximumPrice, setMinimumPrice, maximumPrice} = useContext(FlightsContext)
+    const {selectedFlight} = useContext(FlightsContext)
     const {selectedCity} = useContext(CityContext)
     const [flightDetails, setFlightDetails] = useState({})
+    const [loading, setLoading] = useState(true)
     const id = selectedFlight.id
 
     useEffect(() => {
         axios.get(`https://travelagency-api-86py.onrender.com/flight/${id}`)
           .then((response) => {
             setFlightDetails(response.data)
+            setLoading(false)
           })
           .catch((error) => {
             console.error(error)
+            setLoading(false)
           })
       }, [])
 
@@ -43,17 +45,25 @@ export default function FlightPage(){
             <MenuTop/>
                 
             <PageContainer>
-                <FlightContainer>
-                    <h1>Flight number: 442{flightDetails.id}</h1>
-                    <p>Arrival City: {flightDetails.arrivalCity}</p>
-                    <p>Departure City: {flightDetails.departureCity}</p>
-                    <p>Airline Company: {flightDetails.airline}</p>
-                    <p>Departure Time: {flightDetails.timeDeparture}</p>
-                    <p>Departure Day: {flightDetails.dayDeparture}</p>
-                    <p>Arrival Time: {flightDetails.timeArrival}</p>
-                    <p>Arrival Day: {flightDetails.dayArrival}</p>
-                    <p>Price: € {flightDetails.price}</p>
-                </FlightContainer>
+            <FlightContainer>
+              {loading ? (
+            <LoadingContainer>
+              <LoadingSpinner />
+            </LoadingContainer>
+      ) : (
+        <>
+                <h1>Flight number: 442{flightDetails.id}</h1>
+                <p>Arrival City: {flightDetails.arrivalCity}</p>
+                <p>Departure City: {flightDetails.departureCity}</p>
+                <p>Airline Company: {flightDetails.airline}</p>
+                <p>Departure Time: {flightDetails.timeDeparture}</p>
+                <p>Departure Day: {flightDetails.dayDeparture}</p>
+                <p>Arrival Time: {flightDetails.timeArrival}</p>
+                <p>Arrival Day: {flightDetails.dayArrival}</p>
+                <p>Price: € {flightDetails.price}</p>
+        </>
+      )}
+    </FlightContainer>
             </PageContainer>
             <MenuBottomContainer>
                  <AiOutlineLeftSquare onClick={returnPage}
@@ -126,4 +136,30 @@ const ContainerChoose = styled.button`
     &:hover {
         background-color: #f8a600;
     }
+`
+
+const LoadingContainer = styled.div`
+   display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 40vh;
+`
+
+const LoadingSpinner = styled.div`
+  border: 5px solid black;
+  border-top: 5px solid white;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 0.5s linear infinite;
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
 `

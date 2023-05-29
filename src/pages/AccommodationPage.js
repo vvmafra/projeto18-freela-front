@@ -41,6 +41,12 @@ export default function AccommodationPage(){
             <MenuTop/>
             <PhotosAcc/>
             <PageContainer>
+            <TableCharac>
+                <p>Characteristics</p>
+                <li>City: {accDetails.city}</li>
+                <li>Price per day: € {accDetails.pricePerDay}</li>
+                <li>Description: {accDetails.description}</li>
+              </TableCharac>
               <TableCharac>
                 <p>Facilities</p>
                 {accDetails.facilities.length === 0 ? (
@@ -50,12 +56,6 @@ export default function AccommodationPage(){
                   <li>{fac.name}</li>
                 ))
                 )}
-              </TableCharac>
-              <TableCharac>
-                <p>Characteristics</p>
-                <li>City: {accDetails.city}</li>
-                <li>Price per day: € {accDetails.pricePerDay}</li>
-                <li>Description: {accDetails.description}</li>
               </TableCharac>
             </PageContainer>
             <MenuBottomContainer>
@@ -89,7 +89,7 @@ const PageContainer = styled.div`
 `;
 
 const TableCharac = styled.div`
-    background-color: rgba(211, 211, 211, 0.9);;
+    background-color: rgba(211, 211, 211, 0.80);;
     width: 320px;
     height: 350px;
     margin-top: 10px;
