@@ -76,7 +76,7 @@ export default function FlightsPage(){
       ) : ( <>
           <FlightsOptions filteredFlights={filteredFlights}> 
             {filteredFlights.length === 0 ? (
-              <li>No flights avaiable for this destination in this range</li>
+              <li key={filteredFlights.id}>No flights avaiable for this destination in this range</li>
             ) : (  
           filteredFlights.map((flight) => (
             

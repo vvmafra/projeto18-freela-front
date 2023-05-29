@@ -43,17 +43,17 @@ export default function AccommodationPage(){
             <PageContainer>
             <TableCharac>
                 <p>Characteristics</p>
-                <li>City: {accDetails.city}</li>
-                <li>Price per day: € {accDetails.pricePerDay}</li>
-                <li>Description: {accDetails.description}</li>
+                <li key={accDetails.city}>City: {accDetails.city}</li>
+                <li key={accDetails.pricePerDay}>Price per day: € {accDetails.pricePerDay}</li>
+                <li key={accDetails.description}>Description: {accDetails.description}</li>
               </TableCharac>
               <TableCharac>
                 <p>Facilities</p>
                 {accDetails.facilities.length === 0 ? (
-                  <li>No facilities registered from this accommodation</li>
+                  <li key={0}>No facilities registered from this accommodation</li>
                 ):(
                 accDetails.facilities.map((fac) => (
-                  <li>{fac.name}</li>
+                  <li key={fac.id}>{fac.name}</li>
                 ))
                 )}
               </TableCharac>

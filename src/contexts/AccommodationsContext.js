@@ -10,7 +10,6 @@ export const AccommodationsProvider = ({ children }) => {
 
   function saveAcc(acc) {
     setSelectedAccommodation(acc);
-    console.log(selectedAccommodation)
   };
 
   return (
