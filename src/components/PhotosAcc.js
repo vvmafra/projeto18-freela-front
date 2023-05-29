@@ -6,8 +6,6 @@ export default function PhotosAcc (){
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const { accDetails } = useContext(AccommodationsContext)
     const photos = accDetails.photos
-
-
   
     const handlePrevClick = () => {
       if (currentImageIndex > 0) {
@@ -82,14 +80,15 @@ const ImageContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  height: 100%;
+  width: 400px;
+  margin: 0 auto;
   
 `;
 
 const Image = styled.img`
-  max-width: 100%;
-  max-height: 100%;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
   box-sizing: border-box;
   padding-right: 50px;
   padding-left: 50px;
