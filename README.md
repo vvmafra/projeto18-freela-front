@@ -1,7 +1,7 @@
 # Travel Agency Project
 
 
-✈️18.Project - WebSite developed to show flights and accommodations from a created Travel Agency - VVM
+18.Project ✈️- WebSite developed to show flights and accommodations from a created Travel Agency - VVM
 
 ## Available Scripts
 
