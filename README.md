@@ -1,76 +1,68 @@
 # Travel Agency Project
 
+- WebSite developed to show flights and accommodations from a created Travel Agency - VVM.
+- You can test accessing the deploy: https://projeto18-freela-front-beta.vercel.app/.
+- Front-end project repository. To access the back-end repository, access: https://github.com/vvmafra/projeto18-freela-back.
 
-18.Project ✈️- WebSite developed to show flights and accommodations from a created Travel Agency - VVM
+  ![Captura de tela de 2023-09-20 15-50-22](https://github.com/vvmafra/projeto18-freela-front/assets/121946512/7e2b0986-a386-4e38-86b1-91937e3d9e6d)
+
+
+## About
+Features implemented for this web application:
+- Select city: Choose which city you want search for a flight;
+- Select Flight: Choose the flight you want. You can filter it by price range;
+- Flight infos: Show your selected flight informations;
+- Select Accommodation: Choose your accommodation. You can also filter it by price range;
+- Accommodation infos: Show characteristics, images and facilities in the selected accommodation;
+
+Using this site, you can choose the ideal flight and accommodation for your trip.
 
 ## Technologies used
+
+### Front-end:
+- Libraries: rc-slider;
+1
+
 ![JAVASCRIPT](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)&nbsp;
 ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)&nbsp;
-- Back-end: https://github.com/vvmafra/projeto18-freela-back
+![StyledComponents]( https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white)&nbsp;
+![Axios](https://img.shields.io/badge/axios-671ddf?&style=for-the-badge&logo=axios&logoColor=white)&nbsp;
 
-## Available Scripts
 
-In the project directory, you can run:
+### Back-end:
+- Libraries: cors, dayjs, dotenv;
 
-### `npm start`
+![JS](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)&nbsp;
+![ExpressJS](https://img.shields.io/badge/Express%20js-000000?style=for-the-badge&logo=express&logoColor=white)&nbsp;
+![Postgres](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)&nbsp;
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## How to use
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. Clone Freela back-end repository: https://github.com/vvmafra/projeto18-freela-back:
+- Install dependecies with: 
+```bash
+$ npm install
+```
 
-### `npm test`
+- Run the back-end repository with:
+```bash
+$ npm run dev
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. Clone this repository: https://github.com/vvmafra/projeto18-freela-front:
+- Install dependecies with:
+```bash
+$ npm install
+```
+  
+- Run the back-end repository with:
+```bash
+$ npm run start
+```
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- You can optionally build the project running:
+```bash
+$ npm run build
+```
+  
+3. Access http://localhost:5000 on your browser (Except Internet Explorer)
