@@ -12,7 +12,7 @@ export const FlightsProvider = ({ children }) => {
   };
 
   return (
-    <FlightsContext.Provider value={{ selectedFlight, saveFlight, setSelectedFlight, minimumPrice, setMinimumPrice, maximumPrice, setMaximumPrice}}>
+    <FlightsContext.Provider value={{ selectedFlight, saveFlight, setSelectedFlight, minimumPrice, setMinimumPrice, maximumPrice, setMaximumPrice }}>
       {children}
     </FlightsContext.Provider>
   );

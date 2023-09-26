@@ -10,20 +10,20 @@ import { AccommodationsContext } from "./contexts/AccommodationsContext";
 import AccommodationPage from "./pages/AccommodationPage";
 
 function App() {
-  const {selectedCity} = useContext(CityContext)
-  const {selectedFlight} = useContext(FlightsContext)
-  const {selectedAccommodation} = useContext(AccommodationsContext)
+  const { selectedCity } = useContext(CityContext)
+  const { selectedFlight } = useContext(FlightsContext)
+  const { selectedAccommodation } = useContext(AccommodationsContext)
 
   return (
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<HomePage/>}/>
-          <Route path={`/flights/${selectedCity.id}`} element={<FlightsPage/>}/>
-          <Route path={`/flight/${selectedFlight.id}`} element={<FlightPage/>}/>
-          <Route path={`/accommodations/${selectedCity.id}`} element={<AccommodationsPage/>}/>
-          <Route path={`/accommodation/${selectedAccommodation.id}`} element={<AccommodationPage/>}/>
-        </Routes>
-      </BrowserRouter>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path={`/flights/${selectedCity.id}`} element={<FlightsPage />} />
+        <Route path={`/flight/${selectedFlight.id}`} element={<FlightPage />} />
+        <Route path={`/accommodations/${selectedCity.id}`} element={<AccommodationsPage />} />
+        <Route path={`/accommodation/${selectedAccommodation.id}`} element={<AccommodationPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

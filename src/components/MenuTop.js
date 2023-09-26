@@ -1,14 +1,14 @@
 import styled from "styled-components"
 import { AiFillFacebook, AiFillTwitterSquare, AiFillInstagram, AiFillMessage } from 'react-icons/ai'
 
-export default function MenuTop(){
+export default function MenuTop() {
     return (
-        
+
         <TopMenu>
             <IconContainer>
-                <AiFillFacebook size={40}/>
-                <AiFillInstagram size={40}/>
-                
+                <AiFillFacebook size={40} />
+                <AiFillInstagram size={40} />
+
             </IconContainer>
 
             <MenuTopContainer>
@@ -16,12 +16,12 @@ export default function MenuTop(){
             </MenuTopContainer>
 
             <IconContainer>
-                <AiFillTwitterSquare size={40}/>
-                <AiFillMessage size={40}/>
+                <AiFillTwitterSquare size={40} />
+                <AiFillMessage size={40} />
             </IconContainer>
         </TopMenu>
-        
-    )  
+
+    )
 }
 
 const TopMenu = styled.div`

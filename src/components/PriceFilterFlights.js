@@ -5,9 +5,9 @@ import styled from 'styled-components';
 import { FlightsContext } from '../contexts/FlightsContext';
 
 const PriceFilterFlights = ({ onFilterChange }) => {
-    const {minimumPrice, maximumPrice} = useContext(FlightsContext)
-    const [minPrice, setMinPrice] = useState(minimumPrice)
-    const [maxPrice, setMaxPrice] = useState(maximumPrice)
+  const { minimumPrice, maximumPrice } = useContext(FlightsContext)
+  const [minPrice, setMinPrice] = useState(minimumPrice)
+  const [maxPrice, setMaxPrice] = useState(maximumPrice)
 
   const handleMinPriceChange = (value) => {
     setMinPrice(value);
@@ -35,8 +35,8 @@ const PriceFilterFlights = ({ onFilterChange }) => {
     </PriceFilterContainer>
   );
 };
-  
-  export default PriceFilterFlights;
+
+export default PriceFilterFlights;
 
 const PriceFilterContainer = styled.div`
   margin-left: 70px;
@@ -77,10 +77,14 @@ const StyledSlider = styled(Slider)`
 `;
 
 const ApplyButton = styled.button`
+  padding: 10px;
   background-color: #48403f;
-  color: #fff;
-  padding: 10px 20px;
-  cursor: pointer;
-  height: 50px;
-  font-size: 14px;
+    color: white;
+    font-family: 'PT Sans', sans-serif;
+    font-size: 20px;
+    border: 7px groove white;
+    cursor: pointer;
+    &:hover {
+        background-color: #f8a600;
+    }
 `;

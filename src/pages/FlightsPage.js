@@ -9,12 +9,12 @@ import { CityContext } from '../contexts/CityContext'
 import { FlightsContext } from '../contexts/FlightsContext'
 import { AiOutlineHome, AiOutlineLeftSquare } from 'react-icons/ai'
 
-export default function FlightsPage(){
+export default function FlightsPage() {
   const navigate = useNavigate()
   const [items, setItems] = useState([]);
   const [filteredFlights, setFilteredFlights] = useState([]);
-  const {selectedCity} = useContext(CityContext)
-  const {saveFlight, setMinimumPrice, setMaximumPrice} = useContext(FlightsContext)
+  const { selectedCity } = useContext(CityContext)
+  const { saveFlight, setMinimumPrice, setMaximumPrice } = useContext(FlightsContext)
   const [loading, setLoading] = useState(true)
   const location = useLocation()
 
@@ -37,7 +37,7 @@ export default function FlightsPage(){
         console.error(error);
         setLoading(false)
       });
-  }, [location]);
+  }, [location, selectedCity.id, setMaximumPrice, setMinimumPrice]);
 
   const handleFilterChange = (minPrice, maxPrice) => {
     const filtered = items.filter((flight) => {
@@ -45,64 +45,66 @@ export default function FlightsPage(){
       return price >= minPrice && price <= maxPrice;
     });
     setFilteredFlights(filtered);
-    
+
   };
 
 
-  function selectFlight(flight){
+  function selectFlight(flight) {
     saveFlight(flight)
     navigate(`/flight/${flight.id}`)
-}
+  }
 
   function returnPage() {
-  navigate("/")
-}
+    navigate("/")
+  }
 
-  function home(){
-  navigate("/")
-}
+  function home() {
+    navigate("/")
+  }
 
   return (
     <BackgroundImage>
-      <MenuTop/>
+      <MenuTop />
       <MenuContainer>
         <PriceFilterFlights onFilterChange={handleFilterChange} />
         <FlighsContainer>
-        <p> Arrival City : {selectedCity.name}{'\u00A0\u00A0\u00A0'}|{'\u00A0\u00A0\u00A0'}Country : {selectedCity.country} </p>
-        {loading ? (
+          <p> Arrival City : {selectedCity.name}{'\u00A0\u00A0\u00A0'}|{'\u00A0\u00A0\u00A0'}Country : {selectedCity.country} </p>
+          {loading ? (
             <LoadingContainer>
               <LoadingSpinner />
             </LoadingContainer>
-      ) : ( <>
-          <FlightsOptions filteredFlights={filteredFlights}> 
-            {filteredFlights.length === 0 ? (
-              <li key={filteredFlights.id}>No flights avaiable for this destination in this range</li>
-            ) : (  
-          filteredFlights.map((flight) => (
-            
-            <FlightTag key={flight.id} onClick={() => selectFlight(flight)}>
-              <p>Day: {flight.departureDay}</p>
-              <p>Time:  { flight.departureHour}</p>
-              <p>Price: € {flight.price}</p>
-              <p>Departure City: {flight.departureCity}</p>
-            </FlightTag>
-          )))}
-          </FlightsOptions> 
+          ) : (<>
+            <FlightsOptions filteredFlights={filteredFlights}>
+              {filteredFlights.length === 0 ? (
+                <li key={filteredFlights.id}>No flights avaiable for this destination in this range</li>
+              ) : (
+                filteredFlights.map((flight) => (
+
+                  <FlightTag key={flight.id} onClick={() => selectFlight(flight)}>
+                    <p>Day: {flight.departureDay}</p>
+                    <p>Time:  {flight.departureHour}</p>
+                    <p>Price: € {flight.price}</p>
+                    <p>Departure City: {flight.departureCity}</p>
+                  </FlightTag>
+                )))}
+            </FlightsOptions>
           </>)}
         </FlighsContainer>
       </MenuContainer>
-        <MenuBottomContainer>
-                 <AiOutlineLeftSquare onClick={returnPage}
-                    size={60}
-                    style={{
-                        color: "#000000",
-                        cursor: "pointer"}}  />
-                <AiOutlineHome onClick={home}
-                    size={60}
-                    style={{
-                        color: "#000000",
-                        cursor: "pointer"}} />            
-        </MenuBottomContainer>
+      <MenuBottomContainer>
+        <AiOutlineLeftSquare onClick={returnPage}
+          size={60}
+          style={{
+            color: "#000000",
+            cursor: "pointer"
+          }} />
+        <AiOutlineHome onClick={home}
+          size={60}
+          style={{
+            color: "#000000",
+            cursor: "pointer"
+          }} />
+      </MenuBottomContainer>
     </BackgroundImage>
   );
 }
@@ -145,6 +147,7 @@ const FlightsOptions = styled.div`
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
+  margin-top: 30px;
   justify-content: ${(props) => (props.filteredFlights.length === 0 ? "center" : "space-between")};
   align-items: ${(props) => (props.filteredFlights.length === 0 ? "center" : "")};
   li {
@@ -157,7 +160,7 @@ const FlightsOptions = styled.div`
 const FlightTag = styled.div`
   width: 350px;
   height: 180px;
-  background-color: rgba(72,64,63, 0.90);
+  background-color: rgba(72,64,63, 1);
   margin-bottom: 20px;
   display: flex;
   flex-direction: column;

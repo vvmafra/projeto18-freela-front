@@ -11,106 +11,110 @@ import { AccommodationsContext } from "../contexts/AccommodationsContext";
 import PriceFilterAccommodations from "../components/PriceFilterAccommodations";
 
 export default function AccommodationsPage() {
-    const navigate = useNavigate()
-    const [accommodations, setAccommodations] = useState([])
-    const [filteredAcc, setFilteredAcc] = useState([])
-    const {selectedFlight} = useContext(FlightsContext)
-    const {selectedCity} = useContext(CityContext)
-    const {saveAcc, setMinimumPrice, setMaximumPrice, setAccDetails} = useContext(AccommodationsContext)
-    const [loading, setLoading] = useState(true)
-    const location = useLocation()
+  const navigate = useNavigate()
+  const [accommodations, setAccommodations] = useState([])
+  const [filteredAcc, setFilteredAcc] = useState([])
+  const { selectedFlight } = useContext(FlightsContext)
+  const { selectedCity } = useContext(CityContext)
+  const { saveAcc, setMinimumPrice, setMaximumPrice, setAccDetails } = useContext(AccommodationsContext)
+  const [loading, setLoading] = useState(true)
+  const location = useLocation()
 
-    useEffect(() => {
-        axios.get(`https://travelagency-api-86py.onrender.com/accommodations/${selectedCity.id}`)
-          .then((response) => {
-            const maximumPrice = response.data.maxPrice
-            setMaximumPrice(maximumPrice)
+  useEffect(() => {
+    axios.get(`https://travelagency-api-86py.onrender.com/accommodations/${selectedCity.id}`)
+      .then((response) => {
+        const maximumPrice = response.data.maxPrice
+        setMaximumPrice(maximumPrice)
 
-            const minimumPrice = response.data.minPrice
-            setMinimumPrice(minimumPrice)
-            
-            setAccommodations(response.data.accommodations)
-            setFilteredAcc(response.data.accommodations)
-            setLoading(false)
-          })
-          .catch((error) => {
-            console.error(error);
-            setLoading(false)
-          });
-      }, [location]);
+        const minimumPrice = response.data.minPrice
+        setMinimumPrice(minimumPrice)
 
-    const handleFilterChange = (minPrice, maxPrice) => {
-        const filteredAcc = accommodations.filter((acc) => {
-          const price = acc.pricePerDay;
-          return price >= minPrice && price <= maxPrice;
-        });
-        setFilteredAcc(filteredAcc);
-    
-      };
+        setAccommodations(response.data.accommodations)
+        setFilteredAcc(response.data.accommodations)
+        setLoading(false)
+      })
+      .catch((error) => {
+        console.error(error);
+        setLoading(false)
+      });
+  }, [location, selectedCity.id, setMaximumPrice, setMinimumPrice]);
 
-    function selectAcc(acc){
-          saveAcc(acc)
+  const handleFilterChange = (minPrice, maxPrice) => {
+    const filteredAcc = accommodations.filter((acc) => {
+      const price = acc.pricePerDay;
+      return price >= minPrice && price <= maxPrice;
+    });
+    setFilteredAcc(filteredAcc);
 
-          axios.get(`https://travelagency-api-86py.onrender.com/accommodation/${acc.id}`)
-          .then((response) => {
-            const details = response.data
-            setAccDetails(details)
-            navigate(`/accommodation/${acc.id}`)
-          })
-          .catch((error) => {
-            console.error(error)
-          })
-        
-    }
+  };
 
-    function returnPage(){
-        navigate(`/flight/${selectedFlight.id}`)
-    }
+  function selectAcc(acc) {
+    saveAcc(acc)
 
-    function home(){
-        navigate("/")
-    }
+    axios.get(`https://travelagency-api-86py.onrender.com/accommodation/${acc.id}`)
+      .then((response) => {
+        const details = response.data
+        setAccDetails(details)
+        navigate(`/accommodation/${acc.id}`)
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+
+  }
+
+  function returnPage() {
+    navigate(`/flight/${selectedFlight.id}`)
+  }
+
+  function home() {
+    navigate("/")
+  }
 
 
-    return (
-        <BackgroundImage>
-            <MenuTop />
-            <MenuContainer>
-                <PriceFilterAccommodations onFilterChange={handleFilterChange} />
-                <AccContainer>
-                <p> Accommodations in : {selectedCity.name}{'\u00A0\u00A0\u00A0'}|{'\u00A0\u00A0\u00A0'}Country : {selectedCity.country} </p>
-                {loading ? (
-                  <LoadingContainer>
-                    <LoadingSpinner />
-                  </LoadingContainer>
-                ) : (
-                <AccOptions filteredAcc={filteredAcc}> 
-                    {filteredAcc.length === 0 ? (
-                    <li>{`No Accommodations avaiable in ${selectedCity.name} for this range`}</li>
-                    ) : (  
+  return (
+    <BackgroundImage>
+      <MenuTop />
+      <MenuContainer>
+        <PriceFilterAccommodations onFilterChange={handleFilterChange} />
+        <AccContainer>
+          <p> Accommodations in : {selectedCity.name}{'\u00A0\u00A0\u00A0'}|{'\u00A0\u00A0\u00A0'}Country : {selectedCity.country} </p>
+          {loading ? (
+            <LoadingContainer>
+              <LoadingSpinner />
+            </LoadingContainer>
+          ) : (
+            <AccOptions filteredAcc={filteredAcc}>
+              {filteredAcc.length === 0 ? (
+                <li>{`No Accommodations avaiable in ${selectedCity.name} for this range`}</li>
+              ) : (
                 filteredAcc.map((acc) => (
-                    
-                    <AccTag key={acc.id} onClick={() => selectAcc(acc)}>
+
+                  <AccTag key={acc.id} onClick={() => selectAcc(acc)}>
                     <p>Name: {acc.name}</p>
                     <p>Price per day: € {acc.pricePerDay}</p>
-                    </AccTag>
+                  </AccTag>
                 )))}
-                </AccOptions> )}
-                </AccContainer> 
-            </MenuContainer>
+            </AccOptions>)}
+        </AccContainer>
+      </MenuContainer>
 
-            <MenuBottomContainer>
-                 <AiOutlineLeftSquare onClick={returnPage}
-                    size={60}
-                    style={{
-                        color: "#000000"}}  />
-                <AiOutlineHome onClick={home}
-                    size={60}
-                    style={{
-                        color: "#000000"}} />            
-            </MenuBottomContainer>
-        </BackgroundImage>
-    )
+      <MenuBottomContainer>
+        <AiOutlineLeftSquare onClick={returnPage}
+          size={60}
+          style={{
+            color: "#000000",
+            cursor: "pointer"
+          }} />
+        <AiOutlineHome onClick={home}
+          size={60}
+          style={{
+            color: "#000000",
+            cursor: "pointer"
+          }} />
+      </MenuBottomContainer>
+    </BackgroundImage>
+  )
 }
 
 const BackgroundImage = styled.div`
@@ -146,7 +150,7 @@ const AccContainer = styled.div`
 const AccTag = styled.div`
   width: 300px;
   height: 150px;
-  background-color: rgba(72,64,63, 0.90);
+  background-color: rgba(72,64,63, 1);
   margin-bottom: 20px;
   display: flex;
   flex-direction: column;
@@ -171,6 +175,7 @@ const AccOptions = styled.div`
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
+  margin-top: 30px;
   justify-content: ${(props) => (props.filteredAcc.length === 0 ? "center" : "space-between")};
   align-items: ${(props) => (props.filteredAcc.length === 0 ? "center" : "")};
   li {

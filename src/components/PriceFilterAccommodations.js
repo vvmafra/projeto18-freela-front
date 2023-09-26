@@ -6,9 +6,9 @@ import { AccommodationsContext } from '../contexts/AccommodationsContext';
 
 
 const PriceFilterAccommodations = ({ onFilterChange }) => {
-    const {minimumPrice, maximumPrice} = useContext(AccommodationsContext)
-    const [minPrice, setMinPrice] = useState(minimumPrice)
-    const [maxPrice, setMaxPrice] = useState(maximumPrice)
+  const { minimumPrice, maximumPrice } = useContext(AccommodationsContext)
+  const [minPrice, setMinPrice] = useState(minimumPrice)
+  const [maxPrice, setMaxPrice] = useState(maximumPrice)
 
   const handleMinPriceChange = (value) => {
     setMinPrice(value);
@@ -36,8 +36,8 @@ const PriceFilterAccommodations = ({ onFilterChange }) => {
     </PriceFilterContainer>
   );
 };
-  
-  export default PriceFilterAccommodations;
+
+export default PriceFilterAccommodations;
 
 const PriceFilterContainer = styled.div`
   margin-left: 70px;
@@ -78,10 +78,14 @@ const StyledSlider = styled(Slider)`
 `;
 
 const ApplyButton = styled.button`
+  padding: 10px;
   background-color: #48403f;
-  color: #fff;
-  padding: 10px 20px;
+  color: white;
+  font-family: 'PT Sans', sans-serif;
+  font-size: 20px;
+  border: 7px groove white;
   cursor: pointer;
-  height: 50px;
-  font-size: 14px;
+  &:hover {
+        background-color: #f8a600;
+    }
 `;

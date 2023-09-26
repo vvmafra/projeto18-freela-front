@@ -13,7 +13,7 @@ export const AccommodationsProvider = ({ children }) => {
   };
 
   return (
-    <AccommodationsContext.Provider value={{ accDetails, setAccDetails, saveAcc, selectedAccommodation, setSelectedAccommodation, minimumPrice, setMinimumPrice, maximumPrice, setMaximumPrice}}>
+    <AccommodationsContext.Provider value={{ accDetails, setAccDetails, saveAcc, selectedAccommodation, setSelectedAccommodation, minimumPrice, setMinimumPrice, maximumPrice, setMaximumPrice }}>
       {children}
     </AccommodationsContext.Provider>
   );

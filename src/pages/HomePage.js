@@ -6,13 +6,13 @@ import { useNavigate } from 'react-router-dom'
 import { CityContext } from '../contexts/CityContext'
 import MenuTop from '../components/MenuTop'
 
-export default function HomePage(){
+export default function HomePage() {
     const [options, setOptions] = useState([])
     const [showOptions, setShowOptions] = useState(false)
-    const {saveCity, selectedCity} = useContext(CityContext)
+    const { saveCity } = useContext(CityContext)
     const navigate = useNavigate()
 
-    useEffect(()=> {
+    useEffect(() => {
         const promise = axios.get("https://travelagency-api-86py.onrender.com/cities")
         promise.then(res => {
             setOptions(res.data)
@@ -22,36 +22,36 @@ export default function HomePage(){
         })
     }, [])
 
-    function handleClick(){
+    function handleClick() {
         setShowOptions(!showOptions)
     }
 
-    function selectCity(cities){
+    function selectCity(cities) {
         saveCity(cities)
         navigate(`/flights/${cities.id}`)
     }
 
     return (
-        
-            <BackgroundImage>
-                <MenuTop/>
-                <Container>
-                    <Box onClick={handleClick}>
-                        Cities Available{'\u00A0\u00A0\u00A0'}|{'\u00A0\u00A0\u00A0'}Country
-                    </Box>
-                    {showOptions && (
-                        <OptionList>
+
+        <BackgroundImage>
+            <MenuTop />
+            <Container>
+                <Box onClick={handleClick}>
+                    Cities Available{'\u00A0\u00A0\u00A0'}|{'\u00A0\u00A0\u00A0'}Country
+                </Box>
+                {showOptions && (
+                    <OptionList>
                         {options.map(cities => (
-                            <OptionItem key={cities.id}  onClick={() => selectCity(cities)}>{cities.name}{'\u00A0\u00A0\u00A0'}|{'\u00A0\u00A0\u00A0'}{cities.country} </OptionItem>
+                            <OptionItem key={cities.id} onClick={() => selectCity(cities)}>{cities.name}{'\u00A0\u00A0\u00A0'}|{'\u00A0\u00A0\u00A0'}{cities.country} </OptionItem>
                         ))}
-                            </OptionList>
-                        )}
-                </Container>
-                <MenuBottomContainer>
-                    ©2023 VVM - Travel Agency By Victor Mafra. All Rights Reserved. Designed By Victor Mafra
-                </MenuBottomContainer>
-            </BackgroundImage>
-       
+                    </OptionList>
+                )}
+            </Container>
+            <MenuBottomContainer>
+                ©2023 VVM - Travel Agency By Victor Mafra. All Rights Reserved. Designed By Victor Mafra
+            </MenuBottomContainer>
+        </BackgroundImage>
+
     )
 }
 

@@ -2,44 +2,44 @@ import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import { AccommodationsContext } from '../contexts/AccommodationsContext';
 
-export default function PhotosAcc (){
-    const [currentImageIndex, setCurrentImageIndex] = useState(0);
-    const { accDetails } = useContext(AccommodationsContext)
-    const photos = accDetails.photos
-  
-    const handlePrevClick = () => {
-      if (currentImageIndex > 0) {
-        setCurrentImageIndex(currentImageIndex - 1);
-      }
-    };
-  
-    const handleNextClick = () => {
-      if (currentImageIndex < photos.length - 1) {
-        setCurrentImageIndex(currentImageIndex + 1);
-      }
-    };
-    
-    const currentImage = photos[currentImageIndex];
-  
-    return (
-      <ImageCarouselContainer>
-        <h1>{accDetails.name}</h1>
-        {photos.length === 0 ? 
-        <p>No photos from this Accommodations is available</p>
-      : (
-        <ImagesButtons>
-          <CarouselButton onClick={handlePrevClick}>&lt;</CarouselButton>
-          <ImageContainer>
-            <Image src={currentImage.url} alt="Imagem" />
-          </ImageContainer>
-          <CarouselButton onClick={handleNextClick}>&gt;</CarouselButton>
-        </ImagesButtons>
-        )}
-      </ImageCarouselContainer>
-    );
+export default function PhotosAcc() {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const { accDetails } = useContext(AccommodationsContext)
+  const photos = accDetails.photos
+
+  const handlePrevClick = () => {
+    if (currentImageIndex > 0) {
+      setCurrentImageIndex(currentImageIndex - 1);
+    }
   };
 
-  const ImageCarouselContainer = styled.div`
+  const handleNextClick = () => {
+    if (currentImageIndex < photos.length - 1) {
+      setCurrentImageIndex(currentImageIndex + 1);
+    }
+  };
+
+  const currentImage = photos[currentImageIndex];
+
+  return (
+    <ImageCarouselContainer>
+      <h1>{accDetails.name}</h1>
+      {photos.length === 0 ?
+        <p>No photos from this Accommodations is available</p>
+        : (
+          <ImagesButtons>
+            <CarouselButton onClick={handlePrevClick}>&lt;</CarouselButton>
+            <ImageContainer>
+              <Image src={currentImage.url} alt="Imagem" />
+            </ImageContainer>
+            <CarouselButton onClick={handleNextClick}>&gt;</CarouselButton>
+          </ImagesButtons>
+        )}
+    </ImageCarouselContainer>
+  );
+};
+
+const ImageCarouselContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -53,6 +53,7 @@ export default function PhotosAcc (){
     color: black;
   }
   h1 {
+    padding: 10px;
     font-family: 'PT Sans', sans-serif;
     font-style: italic;
     font-size: 24px;
@@ -92,4 +93,3 @@ const Image = styled.img`
   padding-right: 50px;
   padding-left: 50px;
 `;
-  
